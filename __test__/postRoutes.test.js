@@ -3,6 +3,7 @@
 const supertest = require('supertest');
 const server = require('../server');
 const request = supertest( server.app );
+jest.setTimeout(10000);
 
 describe( 'Testing /post Routes', () => {
 
