@@ -12,11 +12,15 @@ app.use(cors());
 app.use(express.json());
 app.use(postRouter);
 
+// app.get('/', (req, res) => {
+//     res.status(200).json({
+//         message: 'Home Page',
+//         code: 200
+//     })
+// })
+
 app.get('/', (req, res) => {
-    res.status(200).json({
-        message: 'Home Page',
-        code: 200
-    })
+    res.status(200).send('Home Page')
 })
 
 app.use(errorHandler);
@@ -27,5 +31,6 @@ function start(port) {
 }
 
 module.exports = {
+    app,
     start
 };
