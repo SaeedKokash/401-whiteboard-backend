@@ -49,7 +49,7 @@ async function updatePost(req, res) {
     //     {where: {id: id}}
     // )
 
-    res.status(200).json(updatedPost)
+    res.status(200).json("Post Updated Successfully");
 }
 
 async function deletePost(req, res) {
@@ -57,7 +57,7 @@ async function deletePost(req, res) {
     let deletedPost = await Post.destroy({
         where: { id: id }
     });
-    res.status(204).json({deletedPost})
+    res.status(204).json("Post Deleted Successfully");
 }
 
 module.exports = router;
