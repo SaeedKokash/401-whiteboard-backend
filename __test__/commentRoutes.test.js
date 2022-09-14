@@ -19,9 +19,10 @@ describe( 'Testing /comment Routes', () => {
     })
 
     test('creating a comment', async () => {
-        const res = await request.post('/comment').send({
-            comment: 'test comment added',
-            postID: 6
+        const id = 20;
+        const res = await request.post(`/comment/${id}`).send({
+            comment: 'creating a test comment through jest',
+            postID: 3
         });
         expect(res.status).toEqual(201);
     })

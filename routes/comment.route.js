@@ -7,7 +7,7 @@ const { Comment } = require('../models/index');
 
 router.get('/comment', getAllComments);
 router.get('/comment/:id', getOneComment);
-router.post('/comment', addComment);
+router.post('/comment/:id', addComment);
 router.put('/comment/:id', updateComment);
 router.delete('/comment/:id', deleteComment);
 
@@ -26,13 +26,13 @@ async function getOneComment(req, res) {
 }
 
 async function addComment(req, res) {
-    let commentContent = req.body;
-    const postId = req.params.id
-    const newComment = {'postID': postId ,'comment': commentContent}
+    let commentContent = req.body.comment;
+    const id = req.params.id
+    const newComment = {'comment': commentContent, 'postID': id}
     
-    await Comment.create(newComment);
-    let postComment = await Comment.read()
-    res.status(201).json(postComment);
+    let commentData = await Comment.create(newComment);
+    let postedComment = await Comment.read()
+    res.status(201).json(commentData);
 }
 
 async function updateComment(req, res) {
