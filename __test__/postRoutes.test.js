@@ -32,7 +32,7 @@ describe( 'Testing /post Routes', () => {
             postTitle: 'updated test',
             postContent: 'test updated'
         });
-        expect(res.status).toEqual(200);
+        expect(res.status).toEqual(202);
     })
 
     test('deleting a post', async () => {
