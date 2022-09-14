@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const { Post, commentModel } = require('../models/index');
-const { Comment } = require('../models/index');
+// const { Comment } = require('../models/index');
 
 
 router.get('/post', getAllPosts);
@@ -23,7 +23,7 @@ async function getAllPosts(req, res) {
 
 async function getOnePost(req, res) {
     const id = req.params.id;
-    let post = await Post.readOneWithComments(id, commentModel);
+    let post = await Post.readWithComments(commentModel, id);
     res.status(200).json(post);
 }
 

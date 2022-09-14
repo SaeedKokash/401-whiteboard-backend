@@ -13,7 +13,7 @@ describe( 'Testing /post Routes', () => {
     } );
 
     test('getting one post', async () => {
-        const id = 6;
+        const id = 5;
         const res = await request.get(`/post/${id}`);
         expect(res.status).toEqual(200);
     })
