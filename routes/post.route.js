@@ -3,7 +3,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { Post } = require('../models/index');
+const { Post, commentModel } = require('../models/index');
+const { Comment } = require('../models/index');
+
 
 router.get('/post', getAllPosts);
 router.get('/post/:id', getOnePost);
@@ -13,7 +15,7 @@ router.delete('/post/:id', deletePost);
 
 
 async function getAllPosts(req, res) {
-    let post = await Post.findAll();
+    let post = await Post.readWithComments(commentModel);
     res.status(200).json({
         post
     });
@@ -21,9 +23,7 @@ async function getAllPosts(req, res) {
 
 async function getOnePost(req, res) {
     const id = req.params.id;
-    let post = await Post.findOne({
-        where: { id: id }
-    });
+    let post = await Post.readOneWithComments(id, commentModel);
     res.status(200).json(post);
 }
 
@@ -37,11 +37,12 @@ async function updatePost(req, res) {
     let id = req.params.id;
     const obj = req.body;
 
-    let post = await Post.findOne({
-        where: { id: id }
-    });
+    // we dont need this now
+    // let post = await Post.findOne({
+    //     where: { id: id }
+    // });
 
-    const updatedPost = await post.update(obj);
+    const updatedPost = await Post.update(id, obj);
 
     // // another way for updating 
     // const updatedPost = Post.update(
@@ -49,14 +50,13 @@ async function updatePost(req, res) {
     //     {where: {id: id}}
     // )
 
-    res.status(200).json("Post Updated Successfully");
+    res.status(202).json("Post Updated Successfully");
 }
 
 async function deletePost(req, res) {
     const id = req.params.id;
-    let deletedPost = await Post.destroy({
-        where: { id: id }
-    });
+    // we changed destroy with delete and removed where: id:id
+    let deletedPost = await Post.delete(id);
     res.status(204).json("Post Deleted Successfully");
 }
 
