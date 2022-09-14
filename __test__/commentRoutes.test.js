@@ -21,7 +21,7 @@ describe( 'Testing /comment Routes', () => {
     test('creating a comment', async () => {
         const res = await request.post('/comment').send({
             comment: 'test comment added',
-            postID: 5
+            postID: 6
         });
         expect(res.status).toEqual(201);
     })

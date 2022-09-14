@@ -26,9 +26,13 @@ async function getOneComment(req, res) {
 }
 
 async function addComment(req, res) {
-    let newComment = req.body;
-    let comment = await Comment.create(newComment);
-    res.status(201).json(comment);
+    let commentContent = req.body;
+    const postId = req.params.id
+    const newComment = {'postID': postId ,'comment': commentContent}
+    
+    await Comment.create(newComment);
+    let postComment = await Comment.read()
+    res.status(201).json(postComment);
 }
 
 async function updateComment(req, res) {

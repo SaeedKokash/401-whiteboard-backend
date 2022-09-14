@@ -16,6 +16,5 @@ describe('Test Collections', () => {
         expect(newCollection.update).toBeDefined();
         expect(newCollection.delete).toBeDefined();
         expect(newCollection.readWithComments).toBeDefined();
-        expect(newCollection.readOneWithComments).toBeDefined();
         });
 });
