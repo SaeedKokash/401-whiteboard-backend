@@ -3,7 +3,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const post = require('./post.model');
 const comment = require('./comment.model');
-const collection = require('../collections/user-comment-routes')
+const collection = require('../collections/user-comment-routes');
+const user = require('./user.model');
 
 // const POSTGRES_URL = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL
 
@@ -22,8 +23,17 @@ const sequelizeOption = {
 // const sequelizeOption = { } 
 
 let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
+
+// check if you  are authenticated and the connection is connected or not
+sequelize.authenticate().then(() => {
+    console.log('Database Connected to postgres(401-whiteboard)')
+}).catch((error) => {
+    console.log(error)
+});
+
 const postModel = post(sequelize, DataTypes);
 const commentModel = comment(sequelize, DataTypes);
+const userModel = user(sequelize, DataTypes);
 
 // relations
 postModel.hasMany(commentModel, {foreignKey: 'postID', sourceKey: 'id'})
@@ -37,5 +47,13 @@ module.exports = {
     db: sequelize,
     Post: postCollection,
     Comment: commentCollection,
-    commentModel: commentModel
+    commentModel: commentModel,
+    userModel: userModel
 }
+
+// another way for exporting sequelize 
+// const sequelize = new Sequelize(POSTGRES_URL);
+// const db = {};
+// db.sequelize = sequelize;
+// db.userModel = require('./user.model') (sequelize, DataTypes);
+// module.exports = db;
