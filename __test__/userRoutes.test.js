@@ -12,14 +12,14 @@ describe('Testing user Routes', () => {
     });
 
     // can only be tested once
-    test('testing sign up a new user ', async () => {
-        const res = await request.post( '/signup' ).send({
-            userName: 'Testing Account',
-            email: 'testing@testing.com',
-            password: 'test'
-        });
-        expect(res.status).toEqual(201);
-    })
+    // test('testing sign up a new user ', async () => {
+    //     const res = await request.post( '/signup' ).send({
+    //         userName: 'Testing Account',
+    //         email: 'testing@testing.com',
+    //         password: 'test'
+    //     });
+    //     expect(res.status).toEqual(201);
+    // })
 
     test('testing sign up with an existing username', async () => {
         const res = await request.post( '/signup' ).send({
