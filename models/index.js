@@ -26,7 +26,7 @@ let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
 
 // check if you  are authenticated and the connection is connected or not
 sequelize.authenticate().then(() => {
-    console.log('Database Connected to postgres(401-whiteboard)')
+    console.log('Database Connected to postgres')
 }).catch((error) => {
     console.log(error)
 });
