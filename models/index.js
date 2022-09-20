@@ -43,6 +43,8 @@ commentModel.belongsTo(postModel, {foreignKey: 'postID', targetKey: 'id'})
 const postCollection = new collection(postModel);
 const commentCollection = new collection(commentModel);
 
+
+
 module.exports = {
     db: sequelize,
     Post: postCollection,
@@ -50,6 +52,8 @@ module.exports = {
     commentModel: commentModel,
     userModel: userModel
 }
+
+
 
 // another way for exporting sequelize 
 // const sequelize = new Sequelize(POSTGRES_URL);
