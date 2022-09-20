@@ -6,9 +6,9 @@ const comment = require('./comment.model');
 const collection = require('../collections/user-comment-routes');
 const user = require('./user.model');
 
-// const POSTGRES_URL = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL
+const POSTGRES_URL = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL
 
-const POSTGRES_URL = process.env.DATABASE_URL || 'postgresql://skokash:1094@localhost:5432/401-whiteboard';
+// const POSTGRES_URL = process.env.DATABASE_URL || 'postgresql://skokash:1094@localhost:5432/401-whiteboard';
 
 const sequelizeOption = {
     dialectOptions: {
