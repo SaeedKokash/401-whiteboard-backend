@@ -1,5 +1,6 @@
 'use strict';
 
+const User = require('../models/user.model');
 const { userModel } = require('../models/index');
 
 const bearerAuth = async (req, res, next) => {
@@ -10,8 +11,11 @@ const bearerAuth = async (req, res, next) => {
    const token = req.headers.authorization.split(' ').pop();
 
     try {
-        const validUser = await userModel.authenticateToken(token);
-        const userInfo = await userModel.findOne({ where: { userName: validUser } });
+        const validUser = await User.authenticateToken(token);
+
+        // console.log(validUser)  
+        const userInfo = await userModel.findOne({ where: { userName: validUser.userName } });
+        // console.log(userInfo)  
         if(userInfo) {
             req.user = userInfo;
             req.token = token;
