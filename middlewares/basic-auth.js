@@ -2,7 +2,7 @@
 
 const User = require('../models/index').userModel;
 
-const userAuth = async (req, res, next) => {
+const basicAuth = async (req, res, next) => {
     try {
 
         // we need to search for username in the Database
@@ -26,9 +26,9 @@ const userAuth = async (req, res, next) => {
         next();
 
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
     }
     
 }
 
-module.exports = { userAuth };
+module.exports = basicAuth;

@@ -20,7 +20,7 @@ const signup = async (req, res) => {
         }
 
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
     };
 };
 
@@ -34,17 +34,24 @@ const signin = async (req, res) => {
     const encodedValue = basicHeader.pop();
     const decodedValue = base64.decode(encodedValue)
     // console.log(decodedValue)
-    const [email, password] = decodedValue.split(':');
+    const [userName, password] = decodedValue.split(':');
 
     const user = await User.findOne({
-        where: {email: email}
+        where: {userName: userName}
     });
 
     if(user) {
         const isSame = await bcrypt.compare(password, user.password);
 
         if(isSame) {
-            return res.status(200).json(user)
+            return res.status(200).json({ 
+                message: 'You are logged in',
+                user: {
+                    username: user.userName,
+                    email: user.email,
+                    id: user.id
+                    },
+                token: user.token})
         } else {
             return res.status(401).send('You are not Authorized')
         }

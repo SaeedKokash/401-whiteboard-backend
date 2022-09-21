@@ -7,6 +7,10 @@ const Comment = (sequelize, DataTypes) => sequelize.define('Comment', {
     postID: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    userID: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 
 })
