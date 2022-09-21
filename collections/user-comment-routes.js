@@ -53,6 +53,18 @@ class userCommentRoutes {
         console.error(`Error while reading comments for post: ${this.model.name}`);
     }
   }
+
+  async readCommentsWithUser(Comment, id) {
+    try {
+      if(id){
+        return await this.model.findOne({where: {id: id}, include: [Comment]})
+      } else {
+        return await this.model.findAll({include: [Comment]})
+      }
+    } catch (error) {
+        console.error(`Error while reading comments for post: ${this.model.name}`);
+    }
+  }
 }
 
 module.exports = userCommentRoutes;

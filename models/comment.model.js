@@ -11,6 +11,10 @@ const Comment = (sequelize, DataTypes) => sequelize.define('Comment', {
     userID: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    creator: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 
 })
