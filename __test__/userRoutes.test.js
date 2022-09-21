@@ -6,9 +6,9 @@ const request = supertest( server.app );
 
 describe('Testing user Routes', () => {
 
-    it('testing getting all users from /users', async () => {
+    it('testing getting all users from /users without authentication', async () => {
         const res = await request.get( '/users' );
-        expect( res.status ).toEqual( 200 );
+        expect( res.status ).toEqual( 500 );
     });
 
     // can only be tested once
