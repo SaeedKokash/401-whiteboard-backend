@@ -7,9 +7,9 @@ const request = supertest( server.app );
 
 describe( 'Testing /post Routes', () => {
 
-    test( 'getting all posts', async () => {
+    test( 'getting all posts without authentication should give 500', async () => {
         const res = await request.get( '/post' );
-        expect( res.status ).toEqual( 200 );
+        expect( res.status ).toEqual( 500 );
     } );
 
     test('getting one post', async () => {

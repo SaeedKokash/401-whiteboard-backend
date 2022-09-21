@@ -24,7 +24,7 @@ describe('Testing user Routes', () => {
     test('testing sign up with an existing username', async () => {
         const res = await request.post( '/signup' ).send({
             userName: 'Testing Account',
-            email: 'nottesting@testing.com',
+            email: 'existingusername@testing.com',
             password: 'test'
         });
         expect(res.status).toEqual(409);
@@ -33,7 +33,7 @@ describe('Testing user Routes', () => {
 
     test('testing sign up with an existing email', async () => {
         const res = await request.post( '/signup' ).send({
-            userName: 'not Testing Account',
+            userName: 'new Testing Account',
             email: 'testing@testing.com',
             password: 'test'
         });
