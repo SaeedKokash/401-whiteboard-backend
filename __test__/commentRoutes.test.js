@@ -18,14 +18,14 @@ describe( 'Testing /comment Routes', () => {
         expect(res.status).toEqual(200);
     })
 
-    test('creating a comment', async () => {
-        const id = 20;
-        const res = await request.post(`/comment/${id}`).send({
-            comment: 'creating a test comment through jest',
-            postID: 3
-        });
-        expect(res.status).toEqual(201);
-    })
+    // test('creating a comment', async () => {
+    //     const id = 20;
+    //     const res = await request.post(`/comment/${id}`).send({
+    //         comment: 'creating a test comment through jest',
+    //         postID: 3
+    //     });
+    //     expect(res.status).toEqual(201);
+    // })
 
     test('updating a comment', async () => {
         const id = 2;
