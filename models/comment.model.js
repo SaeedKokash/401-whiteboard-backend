@@ -12,10 +12,10 @@ const Comment = (sequelize, DataTypes) => sequelize.define('Comment', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    creator: {
-        type: DataTypes.STRING,
-        defaultValue: 'anonymous'
-    }
+    // creator: {
+    //     type: DataTypes.STRING,
+    //     defaultValue: 'anonymous'
+    // }
 
 })
 
