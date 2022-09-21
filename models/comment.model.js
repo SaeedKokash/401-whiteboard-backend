@@ -14,7 +14,7 @@ const Comment = (sequelize, DataTypes) => sequelize.define('Comment', {
     },
     creator: {
         type: DataTypes.STRING,
-        allowNull: false
+        defaultValue: 'anonymous'
     }
 
 })
