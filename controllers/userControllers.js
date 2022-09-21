@@ -1,6 +1,6 @@
 'use strict';
 
-const User = require('../models').userModel;
+const { userModel } = require('../models/index');
 const bcrypt = require('bcrypt');
 const base64 = require('base-64')
 
@@ -13,7 +13,7 @@ const signup = async (req, res) => {
             password: await bcrypt.hash(password, 10)
         };
 
-        const user = await User.create(data);
+        const user = await userModel.create(data);
 
         if (user) {
             res.status(201).json(user);
@@ -25,7 +25,7 @@ const signup = async (req, res) => {
 };
 
 const allUser = async (req, res) => {
-    const users = await User.findAll();
+    const users = await userModel.findAll();
     res.status(200).json(users)
 };
 
@@ -36,7 +36,7 @@ const signin = async (req, res) => {
     // console.log(decodedValue)
     const [userName, password] = decodedValue.split(':');
 
-    const user = await User.findOne({
+    const user = await userModel.findOne({
         where: {userName: userName}
     });
 
