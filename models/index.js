@@ -7,7 +7,7 @@ const user = require('./user.model');
 
 const collection = require('../collections/user-comment-routes');
 
-const POSTGRES_URL = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL
+// const POSTGRES_URL = process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL
 const sequelizeOption = {
     dialectOptions: {
         ssl: {
@@ -18,7 +18,7 @@ const sequelizeOption = {
 } 
 
 // for local testing 
-// const POSTGRES_URL = process.env.DATABASE_URL || 'postgresql://skokash:1094@localhost:5432/401-whiteboard';
+const POSTGRES_URL = process.env.DATABASE_URL || 'postgresql://skokash:1094@localhost:5432/401-whiteboard';
 // const sequelizeOption = { } 
 
 let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);

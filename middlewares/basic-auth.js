@@ -1,12 +1,12 @@
 'use strict';
 
-const User = require('../models/index').userModel;
+const { userModel } = require('../models/index');
 
 const basicAuth = async (req, res, next) => {
     try {
 
         // we need to search for username in the Database
-        const userName =  await User.findOne({
+        const userName =  await userModel.findOne({
             where: {userName: req.body.userName}
         })
 
@@ -15,7 +15,7 @@ const basicAuth = async (req, res, next) => {
         }
     
         // we need to search for the email in the Database
-        const email =  await User.findOne({
+        const email =  await userModel.findOne({
             where: {email: req.body.email}
         })
 
