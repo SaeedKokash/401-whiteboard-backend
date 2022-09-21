@@ -6,8 +6,10 @@ const router = express.Router();
 const { Post, commentModel } = require('../models/index');
 // const { Comment } = require('../models/index');
 
+const bearerAuth = require('../middlewares/bearer-auth')
 
-router.get('/post', getAllPosts);
+
+router.get('/post', bearerAuth, getAllPosts);
 router.get('/post/:id', getOnePost);
 router.post('/post', addPost);
 router.put('/post/:id', updatePost);

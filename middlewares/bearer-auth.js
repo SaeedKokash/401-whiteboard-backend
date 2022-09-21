@@ -22,7 +22,7 @@ const bearerAuth = async (req, res, next) => {
             next('Invalid Login');
         }
     } catch (error) {
-        next(error.message);
+        next('Invalid Login');
     }
 }
 
