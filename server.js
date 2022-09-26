@@ -4,11 +4,11 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-const postRouter = require('./routes/post.route');
-const commentRouter = require('./routes/comment.route');
+const postRouter = require('./routes/post.routes');
+const commentRouter = require('./routes/comment.routes');
 const errorHandler = require('./error-handlers/500');
 const notFoundHandler = require('./error-handlers/404');
-const userRouter = require('./routes/user.route')
+const userRouter = require('./routes/user.routes')
 
 app.use(cors());
 app.use(express.json());
