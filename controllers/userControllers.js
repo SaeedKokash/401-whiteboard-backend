@@ -6,11 +6,12 @@ const base64 = require('base-64')
 
 const signup = async (req, res) => {
     try {
-        const { userName, email, password } = req.body;
+        const { userName, email, password, role } = req.body;
         const data = {
             userName,
             email,
-            password: await bcrypt.hash(password, 10)
+            password: await bcrypt.hash(password, 10),
+            role
         };
 
         const user = await userModel.create(data);
@@ -49,7 +50,8 @@ const signin = async (req, res) => {
                 user: {
                     username: user.userName,
                     email: user.email,
-                    id: user.id
+                    id: user.id,
+                    role: user.role
                     },
                 token: user.token})
         } else {
