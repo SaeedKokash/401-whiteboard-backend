@@ -8,7 +8,8 @@ const acl = (capability) => {
     return (req, res, next) => {
         // console.log(req.user.capabilities);
         try {
-            if (req.user.capabilities.includes(capability)) {
+            // check if the user has the capability or if the req is from the owner
+            if (req.user.capabilities.includes(capability) || req.user.id === parseInt(req.params.userId)) {
                 next();
             } else {
                 next(`Access Denied for ${capability}`);
