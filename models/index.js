@@ -42,10 +42,20 @@ commentModel.belongsTo(postModel, {foreignKey: 'postID', targetKey: 'id'})
 userModel.hasMany(commentModel, {foreignKey: 'userID', sourceKey: 'id'})
 commentModel.belongsTo(userModel, {foreignKey: 'userID', targetKey: 'id'})
 
+// relations between user and post
+userModel.hasMany(postModel, {foreignKey: 'userID', sourceKey: 'id'})
+postModel.belongsTo(userModel, {foreignKey: 'userID', targetKey: 'id'})
+
 // adding creator from userModel userName to commentModel creator
 commentModel.addHook('beforeCreate', async (comment) => {
     const user = await userModel.findOne({where: {id: comment.userID}})
     comment.creator = user.userName
+})
+
+// adding creator from userModel userName to postModel creator
+postModel.addHook('beforeCreate', async (post) => {
+    const user = await userModel.findOne({where: {id: post.userID}})
+    post.creator = user.userName
 })
 
 // collections

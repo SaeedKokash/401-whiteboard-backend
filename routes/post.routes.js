@@ -14,7 +14,7 @@ router.get('/post', bearerAuth, acl('read'), getAllPosts);
 router.get('/post/:id', bearerAuth, acl('read'), getOnePost);
 router.post('/post', bearerAuth, acl('create'), addPost);
 router.put('/post/:id', bearerAuth, acl('update'), updatePost);
-router.delete('/post/:id', bearerAuth, acl('delete'), deletePost);
+router.delete('/post/:id/:userID', bearerAuth, acl('delete'), deletePost);
 
 
 async function getAllPosts(req, res) {
@@ -32,6 +32,8 @@ async function getOnePost(req, res) {
 
 async function addPost(req, res) {
     let newPost = req.body;
+    // console.log(req.body)
+    // const newPostObj = {'postTitle': newPost.postTitle, 'postContent': newPost.postContent, 'userID': newPost.userID, 'creator': newPost.creator};
     let post = await Post.create(newPost);
     res.status(201).json(post);
 }
