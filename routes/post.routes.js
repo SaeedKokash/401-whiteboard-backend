@@ -13,8 +13,8 @@ const acl = require('../middlewares/acl')
 router.get('/post', bearerAuth, acl('read'), getAllPosts);
 router.get('/post/:id', bearerAuth, acl('read'), getOnePost);
 router.post('/post', bearerAuth, acl('create'), addPost);
-router.put('/post/:id/:userId ', bearerAuth, acl('update'), updatePost);
-router.delete('/post/:id/:userId', bearerAuth, acl('delete'), deletePost);
+router.put('/post/:id', bearerAuth, acl('update'), updatePost);
+router.delete('/post/:id', bearerAuth, acl('delete'), deletePost);
 
 
 async function getAllPosts(req, res) {
